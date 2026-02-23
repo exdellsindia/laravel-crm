@@ -1,7 +1,7 @@
 {
-    "name": "krayin/laravel-crm",
+    "name": "exdellscrm/laravel-crm",
     "type": "project",
-    "description": "Krayin CRM",
+    "description": "ExdellsCRM",
     "keywords": [
         "framework",
         "laravel"

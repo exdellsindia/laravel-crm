@@ -10,9 +10,10 @@
 
     {!! view_render_event('admin.layout.head.before') !!}
 
-    <title>{{ $title }}</title>
+    <title>{{ $title ? $title . ' | ' : '' }}{{ config('app.name') }}</title>
 
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/solar-theme.css">
 
     <meta
         http-equiv="X-UA-Compatible"

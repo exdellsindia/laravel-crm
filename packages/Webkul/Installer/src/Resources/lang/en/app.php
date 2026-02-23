@@ -120,7 +120,7 @@ return [
         'index' => [
             'create-administrator' => [
                 'admin'            => 'Admin',
-                'krayin'           => 'Krayin',
+                'krayin'           => 'ExdellsCRM',
                 'confirm-password' => 'Confirm Password',
                 'email'            => 'Email',
                 'email-address'    => 'admin@example.com',
@@ -135,7 +135,7 @@ return [
                 'application-name'            => 'Application Name',
                 'argentine-peso'              => 'Argentine Peso (ARS)',
                 'australian-dollar'           => 'Australian Dollar (AUD)',
-                'krayin'                      => 'Krayin',
+                'krayin'                      => 'ExdellsCRM',
                 'bangladeshi-taka'            => 'Bangladeshi Taka (BDT)',
                 'brazilian-real'              => 'Brazilian Real (BRL)',
                 'british-pound-sterling'      => 'British Pound Sterling (GBP)',
@@ -218,24 +218,24 @@ return [
             ],
 
             'installation-processing' => [
-                'krayin'       => 'Installation Krayin',
+                'krayin'       => 'Installation ExdellsCRM',
                 'krayin-info'  => 'Creating the database tables, this can take a few moments',
                 'title'        => 'Installation',
             ],
 
             'installation-completed' => [
                 'admin-panel'                => 'Admin Panel',
-                'krayin-forums'              => 'Krayin Forum',
+                'krayin-forums'              => 'ExdellsCRM Forum',
                 'customer-panel'             => 'Customer Panel',
-                'explore-krayin-extensions'  => 'Explore Krayin Extension',
+                'explore-krayin-extensions'  => 'Explore ExdellsCRM Extension',
                 'title'                      => 'Installation Completed',
-                'title-info'                 => 'Krayin is Successfully installed on your system.',
+                'title-info'                 => 'ExdellsCRM is Successfully installed on your system.',
             ],
 
             'ready-for-installation' => [
                 'create-databsae-table'   => 'Create the database table',
                 'install'                 => 'Installation',
-                'install-info'            => 'Krayin For Installation',
+                'install-info'            => 'ExdellsCRM For Installation',
                 'install-info-button'     => 'Click the button below to',
                 'populate-database-table' => 'Populate the database tables',
                 'start-installation'      => 'Start Installation',
@@ -246,8 +246,8 @@ return [
                 'locale'        => 'Locale',
                 'main'          => 'Start',
                 'select-locale' => 'Select Locale',
-                'title'         => 'Your Krayin install',
-                'welcome-title' => 'Welcome to Krayin',
+                'title'         => 'Your ExdellsCRM install',
+                'welcome-title' => 'Welcome to ExdellsCRM',
             ],
 
             'server-requirements' => [
@@ -274,7 +274,7 @@ return [
             ],
 
             'back'                     => 'Back',
-            'krayin'                   => 'Krayin',
+            'krayin'                   => 'ExdellsCRM',
             'krayin-info'              => 'a Community Project by',
             'krayin-logo'              => 'Krayin Logo',
             'continue'                 => 'Continue',

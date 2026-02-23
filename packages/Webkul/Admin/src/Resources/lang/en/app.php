@@ -367,7 +367,7 @@ return [
 
         'layouts' => [
             'powered-by' => [
-                'description' => 'Powered by :krayin, an open-source project by :webkul.',
+                'description' => 'Exdells Solar CRM - India Solar Business Management System',
             ],
 
             'header' => [

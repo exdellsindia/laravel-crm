@@ -1,4 +1,5 @@
 {
+  "name": "exdellscrm",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,0 +1,27 @@
+/* Solar Theme Colors */
+:root {
+  --solar-orange: #FF8C00;
+  --solar-blue: #003366;
+  --primary-color: var(--solar-orange);
+  --secondary-color: var(--solar-blue);
+}
+
+body {
+  background-color: #fff;
+}
+
+.header, .footer, .navbar {
+  background-color: var(--solar-blue);
+  color: #fff;
+}
+
+.btn-primary, .text-brandColor {
+  background-color: var(--solar-orange);
+  color: #fff;
+}
+
+a {
+  color: var(--solar-orange);
+}
+
+/* Add more selectors as needed for full theme coverage */

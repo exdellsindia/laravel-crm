@@ -1,3 +1,8 @@
+@php
+    $leadDetailsLabel = __('admin::app.leads.create.details');
+    $contactPersonLabel = __('admin::app.leads.create.contact-person');
+    $productsLabel = __('admin::app.leads.create.products');
+@endphp
 <x-admin::layouts>
     <x-slot:title>
         @lang('admin::app.leads.create.title')
@@ -73,29 +78,14 @@
             <div class="box-shadow flex flex-col gap-4 rounded-lg border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900">
                 {!! view_render_event('admin.leads.edit.form_controls.before') !!}
 
+                <!-- Only Details tab shown, Contact Person and Products removed -->
                 <div class="flex w-full gap-2 border-b border-gray-200 dark:border-gray-800">
-                    <!-- Tabs -->
-                    <template
-                        v-for="tab in tabs"
-                        :key="tab.id"
+                    <a
+                        href="#lead-details"
+                        class="inline-block px-3 py-2.5 border-b-2 text-sm font-medium text-brandColor border-brandColor dark:brandColor dark:brandColor"
                     >
-                        {!! view_render_event('admin.leads.create.tabs.before') !!}
-
-                        <a
-                            :href="'#' + tab.id"
-                            :class="[
-                                'inline-block px-3 py-2.5 border-b-2  text-sm font-medium ',
-                                activeTab === tab.id
-                                ? 'text-brandColor border-brandColor dark:brandColor dark:brandColor'
-                                : 'text-gray-600 dark:text-gray-300  border-transparent hover:text-gray-800 hover:border-gray-400 dark:hover:border-gray-400  dark:hover:text-white'
-                            ]"
-                            @click="scrollToSection(tab.id)"
-                            :text="tab.label"
-                        >
-                        </a>
-
-                        {!! view_render_event('admin.leads.create.tabs.after') !!}
-                    </template>
+                        Details
+                    </a>
                 </div>
 
                 <div class="flex flex-col gap-4 px-4 py-2">
@@ -235,9 +225,9 @@
                         activeTab: 'lead-details',
 
                         tabs: [
-                            { id: 'lead-details', label: '@lang('admin::app.leads.create.details')' },
-                            { id: 'contact-person', label: '@lang('admin::app.leads.create.contact-person')' },
-                            { id: 'products', label: '@lang('admin::app.leads.create.products')' }
+                            { id: 'lead-details', label: "{{ $leadDetailsLabel }}" },
+                            { id: 'contact-person', label: "{{ $contactPersonLabel }}" },
+                            { id: 'products', label: "{{ $productsLabel }}" }
                         ],
                     };
                 },
