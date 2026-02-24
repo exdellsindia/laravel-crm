@@ -1,6 +1,5 @@
-FROM php:8.2-cli
+FROM php:8.2-apache
 
-# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -9,14 +8,11 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    libpq-dev \
     zip
 
-# Install PHP extensions
 RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
-    pdo_pgsql \
     mbstring \
     zip \
     exif \
@@ -25,17 +21,16 @@ RUN docker-php-ext-install \
     gd \
     calendar
 
-# Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /app
+WORKDIR /var/www/html
 
 COPY . .
 
-ENV COMPOSER_MEMORY_LIMIT=-1
-
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-EXPOSE 10000
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-CMD php -S 0.0.0.0:10000 -t public
+RUN a2enmod rewrite
+
+EXPOSE 80
