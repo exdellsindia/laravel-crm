@@ -1,10 +1,10 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
 RUN apt-get update && apt-get install -y \
     git unzip curl \
     libzip-dev libpng-dev libonig-dev libxml2-dev zip
 
-# Install required PHP extensions
+# Install required extensions
 RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
@@ -15,27 +15,17 @@ RUN docker-php-ext-install \
     gd \
     calendar
 
-# Fix MPM conflict
-RUN a2dismod mpm_event || true
-RUN a2dismod mpm_worker || true
-RUN a2enmod mpm_prefork
-
-# Enable rewrite
-RUN a2enmod rewrite
-
-# Set document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
-
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www/html
+WORKDIR /app
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-RUN chown -R www-data:www-data storage bootstrap/cache
+RUN php artisan config:clear || true
+RUN php artisan cache:clear || true
 
-EXPOSE 80
+EXPOSE 8080
+
+CMD php artisan serve --host=0.0.0.0 --port=${PORT}
