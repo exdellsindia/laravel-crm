@@ -11,8 +11,17 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath gd
+# Install PHP extensions (ADD calendar here)
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    mbstring \
+    zip \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    calendar
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -21,7 +30,6 @@ WORKDIR /app
 
 COPY . .
 
-# Increase memory for composer
 ENV COMPOSER_MEMORY_LIMIT=-1
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction
