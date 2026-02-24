@@ -1,5 +1,6 @@
 FROM php:8.2-apache
 
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -10,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip
 
+# Install PHP extensions
 RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
@@ -20,13 +22,17 @@ RUN docker-php-ext-install \
     gd \
     calendar
 
-# Enable rewrite only
+# Enable mod_rewrite (ONLY this, nothing else)
 RUN a2enmod rewrite
 
-# IMPORTANT: Disable extra MPM if loaded
-RUN a2dismod mpm_event || true
-RUN a2enmod mpm_prefork
+# Set Laravel public folder as Apache root
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf \
+    /etc/apache2/apache2.conf \
+    /etc/apache2/conf-available/*.conf
 
+# Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
