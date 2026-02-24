@@ -16,4 +16,4 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 RUN php artisan config:clear || true
 RUN php artisan cache:clear || true
 
-CMD sh -c "php -S 0.0.0.0:$PORT -t public"
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8080} -t public"]
